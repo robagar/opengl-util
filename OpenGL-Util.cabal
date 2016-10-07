@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                OpenGL-Util
-version:             0.1.0.0
+version:             0.2.0.0
 synopsis:            OpenGL utility functions.
 -- description:         
 homepage:            https://bitbucket.org/robagar/opengl-util
@@ -20,12 +20,14 @@ library
   exposed-modules:     Graphics.Rendering.OpenGL.Util,
                        Graphics.Rendering.OpenGL.Util.Buffers,
                        Graphics.Rendering.OpenGL.Util.Mesh,
-                       Graphics.Rendering.OpenGL.Util.Shaders     
+                       Graphics.Rendering.OpenGL.Util.Shaders,
+                       Graphics.Rendering.OpenGL.Util.Textures     
   other-modules:       Misc
   -- other-extensions:    
-  build-depends:       base >=4.7 && <4.8,
+  build-depends:       base >=4.7 && <5,
                        OpenGL,
                        OpenGLRaw,
+                       JuicyPixels,
                        vector, 
                        array,
                        filepath,

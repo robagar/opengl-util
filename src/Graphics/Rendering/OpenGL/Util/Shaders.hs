@@ -27,8 +27,8 @@ import System.Directory
 import System.FilePath ((</>))
 
 import Graphics.Rendering.OpenGL
-import Graphics.Rendering.OpenGL.GL.ByteString
-import Graphics.Rendering.OpenGL.Raw.Core31
+--import Graphics.Rendering.OpenGL.GL.ByteString
+--import Graphics.Rendering.OpenGL.Raw.Core31
 
 import Misc 
 
@@ -73,19 +73,20 @@ setUniformValue :: (Storable a, Uniform a) => String -> a -> IO ()
 setUniformValue = setUniform .: UniformValue
 
 setUniformMatrix :: String -> GLmatrix GLfloat -> IO ()
-setUniformMatrix n mx = do
-    mprog <- get currentProgram
-    maybeDo_ mprog $ \_ -> do
-        -- programID is unexposed again (damn you Sven Panne!)
-        pid <- getPID
-        ul <- withGLstring n $ glGetUniformLocation pid
-        ma <- getMatrixComponents ColumnMajor mx
-        withArray ma $ glUniformMatrix4fv ul 1 (fromIntegral gl_FALSE)
-    where
-    getPID :: IO GLuint
-    getPID = alloca $ \buf -> do
-        glGetIntegerv gl_CURRENT_PROGRAM buf
-        peekElemOff (castPtr buf) 0
+setUniformMatrix = undefined
+--setUniformMatrix n mx = do
+--    mprog <- get currentProgram
+--    maybeDo_ mprog $ \_ -> do
+--        -- programID is unexposed again (damn you Sven Panne!)
+--        pid <- getPID
+--        ul <- withGLstring n $ glGetUniformLocation pid
+--        ma <- getMatrixComponents ColumnMajor mx
+--        withArray ma $ glUniformMatrix4fv ul 1 (fromIntegral gl_FALSE)
+--    where
+--    getPID :: IO GLuint
+--    getPID = alloca $ \buf -> do
+--        glGetIntegerv gl_CURRENT_PROGRAM buf
+--        peekElemOff (castPtr buf) 0
 
 
 setUniforms :: Program -> [UniformSetting] -> IO ()
